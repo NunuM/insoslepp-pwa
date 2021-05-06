@@ -22,7 +22,7 @@ npm install web-push -g
 web-push generate-vapid-keys --json
 ```
 
-Copy those keys to [backend configs](backen/config.json) and change configs to your convenience, inculsive database.
+Copy those keys to [backend configs](https://github.com/NunuM/insoslepp-pwa/blob/main/backend/configs.json#L40) and change configs to your convenience, inculsive database.
 
 The email is not required to work.
 
