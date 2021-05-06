@@ -65,7 +65,3 @@ If your application do not allow anonymous interactions, you can change the [mid
 This is a base ER that you can start build your application.
 
 ![ER model](https://i.ibb.co/bNbcgFh/Screenshot-2021-05-06-at-23-14-23.png)
-
-
-# Admin UI site
-
