@@ -228,15 +228,6 @@ module.exports = {
     getAudioSourceUrl: new Queries('getAudioSourceUrl',
         'SELECT sa.*, p.title, p.id FROM posts p JOIN audio_source sa ON sa.id = p.audio_source_id  WHERE p.id=?'
     ),
-    insertPostFromGenPhase: new Queries('insertPostFromGenPhase',
-        'INSERT INTO posts (title,is_audio,audio_source_id, category_id) values (?,1,?,?)'
-    ),
-    insertGenState: new Queries('insertGenState',
-        'INSERT INTO generation_stage (yid, version, stage, captions, punctuation, title, emotion, category, summary, description, hash) VALUES (?,?,?,?,?,?,?,?,?,?,?)'
-    ),
-    findVersionByHash: new Queries('findVersionByHash',
-        'SELECT * FROM generation_stage WHERE hash=? AND version=?'
-    ),
     insertPost: new Queries('insertPost',
         'INSERT INTO posts (title, description, body, is_audio, audio_source_id, images, tips, category_id) VALUES (?,?,?,?,?,?,?,(select id from categories where name =?))'
     ),

@@ -146,22 +146,6 @@ router.get('/sitemap', (_, res) => {
     });
 });
 
-router.get('/version/:id', async (req, res) => {
-    if (req.query['hash']) {
-        try {
-            const postId = await controller.createPostFromGenId(req.params.id, req.query['hash']);
-
-            await Sitemap.appendToXML(postId, new Date());
-
-            res.redirect(configs.domain + '/post/' + postId);
-            res.end();
-        } catch (e) {
-            ErrorParser.parse(e, req, res);
-        }
-    } else {
-        res.status(400).end();
-    }
-});
 
 router.post('/push/:post',
     AppMiddlewares.adminMiddleware,

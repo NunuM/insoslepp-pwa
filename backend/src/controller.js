@@ -393,36 +393,6 @@ class Controller {
         }
     }
 
-    /**
-     * Create post
-     *
-     * @param {number} versionId
-     * @param {string} hash
-     * @return {Promise<number>}
-     */
-    async createPostFromGenId(versionId, hash) {
-
-        if (typeof hash !== 'string') {
-            throw new HttpError('Invalid hash', 400);
-        }
-
-        try {
-            const result = await database.singleResultQuery(queries.findVersionByHash.withParams([
-                hash,
-                versionId,
-            ]));
-
-            const audioSourceId = await database.executeInsertQuery(queries.insertAudioSource.withParams([result.yid, 'youtube']))
-
-            const inserted = await database.executeInsertQuery(queries.insertPost.withParams(DtoToDomain.fromGenToPost(result, audioSourceId)));
-
-            const _ = await database.executeInsertQuery(queries.createLiveListenForPost.withParams(inserted));
-
-            return inserted;
-        } catch (e) {
-            throw e;
-        }
-    }
 
     /**
      * Send push
