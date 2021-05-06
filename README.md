@@ -2,6 +2,17 @@
 
 ![InSoSleep](https://i.ibb.co/pX7KrKX/Screenshot-2021-05-06-at-23-23-26.png)
 
+### Features
+
+* Push Notifications
+* Almost Native Look&Feel
+* Offline Content
+* Audio Player
+* Base ER model so that you can build your next app
+* Flexible API
+* Admin UI
+* SEO Ready
+
 ### Server Setup
 
 Generate VAPID key pair
@@ -21,8 +32,12 @@ npm i
 # with database already defined in the config
 npm run migrator 00
 npm run migrator 01
-npm start
+npm start # default port 3000 http://localhost:3000/admin/posts/
 ```
+### WebApp
+
+On [environment]() fill the vapi with the public key.
+
 
 ### REST API
 
@@ -53,5 +68,4 @@ This is a base ER that you can start build your application.
 
 
 # Admin UI site
-
 
