@@ -1,0 +1,45 @@
+/* You can add global styles to this file, and also import other style files */
+html {
+  height: 100%;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: #121421;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.content-margin {
+  padding: 30px 5vw 0 5vw;
+}
+
+h1 {
+  font-size: 34px !important;
+}
+
+.small-divider {
+  display: inline-block;
+  width: 20vw;
+  color: #4A80F0;
+}
+
+app-home-page {
+  overflow: auto;
+  display: block;
+}
+
+app-post-page {
+  overflow: auto;
+  display: block;
+}
+
+.hidden {
+  display: none !important;
+}

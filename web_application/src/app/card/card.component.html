@@ -1,0 +1,36 @@
+<div matRipple (click)="emitClicked()" class="card mat-elevation-z1 card-cat{{color}}">
+  <div class="card-content">
+    <div class="card-title">
+      {{title}}
+    </div>
+    <div class="card-description">
+      {{description}}
+    </div>
+  </div>
+
+  <div class="card-indicators">
+    <div>
+      {{numberFormatter(likes || 0, 0)}}
+    </div>
+    <div>
+      <button mat-icon-button>
+        <mat-icon *ngIf="liked===0">
+          favorite_border
+        </mat-icon>
+        <mat-icon *ngIf="liked===1">
+          favorite
+        </mat-icon>
+      </button>
+    </div>
+    <div>
+      {{numberFormatter(live || 0, 0)}}
+    </div>
+    <div>
+      <button mat-icon-button>
+        <mat-icon>
+          person
+        </mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

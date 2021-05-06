@@ -1,0 +1,50 @@
+<article #content class="content-margin post-content" itemscope itemtype="http://schema.org/BlogPosting">
+  <h1 itemprop="name" class="post-title">{{post.title}}</h1>
+  <div
+    style="display: flex; justify-content: space-between; align-content: start; align-items: baseline; margin-bottom: 10px;">
+    <small class="post-category">{{post.category_name}}</small>
+    <button (click)="scrollBottom()" mat-icon-button *ngIf="post.is_audio">
+      <mat-icon style="color: #515979;">
+        volume_up
+      </mat-icon>
+    </button>
+    <time class="post-date" itemprop="datePublished">{{post.created | date}}</time>
+  </div>
+  <p class="post-text">{{post.description}}</p>
+  <meta itemprop="description" content="{{post.description}}">
+
+  <mat-progress-bar mode="indeterminate" *ngIf="!post._is_complete"></mat-progress-bar>
+
+  <p itemprop="articleBody" class="post-text" *ngFor="let paragraph of getPostBody()">{{ paragraph }}</p>
+
+  <div class="post-images" *ngFor="let image of getImages()">
+    <img src="{{image.src}}" alt="{{image.alt}}">
+  </div>
+
+  <div *ngFor="let tip of getTips();let i = index" class="tips">
+    <blockquote class="tip-quote">
+      {{tip}}
+    </blockquote>
+    <div class="tip-pointer">
+      <button *ngIf="currentTipIndex !== i" (click)="speak(i)" color="primary" mat-mini-fab>
+        <mat-icon>
+          play_arrow
+        </mat-icon>
+      </button>
+      <button *ngIf="currentTipIndex === i" (click)="speak(i)" color="primary" mat-mini-fab>
+        <mat-icon>
+          stop
+        </mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div style="width: 100%; margin-top: auto; text-transform: capitalize; margin-bottom: 30px">
+    <button *ngIf="post.is_audio"
+            class="listen-button"
+            [class.active]="ableToClick"
+            (click)="play()" mat-button>
+      {{ state }}
+    </button>
+  </div>
+</article>

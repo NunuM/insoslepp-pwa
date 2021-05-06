@@ -1,0 +1,110 @@
+<mat-toolbar style="background-color: inherit; color: white">
+  <mat-toolbar-row>
+    <div class="top-menu-holder" *ngIf="showMainMenu === true">
+      <div>
+        <h1 [@letterSpacingAnimation]="animateTopBar === true" routerLink="/">Discover</h1>
+      </div>
+      <div style="position: relative;" [@fadeInOutAnimation]="animateTopBar === true">
+        <div class="top-menu-search">
+          <input #searchInput [formControl]="searchControl" type="search" [class.active-search]="isSearching"
+                 placeholder="search">
+        </div>
+        <button (click)="setIsSearching(!isSearching)" mat-icon-button>
+          <mat-icon *ngIf="isSearching===false">
+            search
+          </mat-icon>
+          <mat-icon *ngIf="isSearching">
+            close
+          </mat-icon>
+        </button>
+        <button *ngIf="!isSearching" [matMenuTriggerFor]="mainMenu" style="width: 24px;" mat-icon-button>
+          <mat-icon>
+            more_vert
+          </mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="top-menu-holder" *ngIf="showMainMenu === false">
+      <div [@fadeInOutAnimation]="animateTopBar === true">
+        <button (click)="goBack()" mat-icon-button>
+          <mat-icon>
+            arrow_back
+          </mat-icon>
+        </button>
+      </div>
+      <div [@fadeInOutAnimation]="animateTopBar === true">
+        <button (click)="sharePost()" mat-icon-button>
+          <mat-icon>
+            share
+          </mat-icon>
+        </button>
+        <button (click)="likePostClick()" mat-icon-button>
+          <mat-icon *ngIf="likeIndicator === false">
+            favorite_border
+          </mat-icon>
+          <mat-icon *ngIf="likeIndicator === true">
+            favorite
+          </mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-toolbar-row>
+  <mat-toolbar-row style="position: relative; height: 0;">
+    <div *ngIf="isSearching" [@inOutAnimation] class="search-result-box">
+      <div style="height: 5px;">
+        <mat-progress-bar *ngIf="isLoadingSuggestions===true" color="accent" mode="indeterminate"></mat-progress-bar>
+      </div>
+      <div class="search-result-entry"
+           (click)="goToPost(suggestion.id)"
+           *ngFor="let suggestion of suggestions">
+        <div>
+          {{suggestion.title}}
+        </div>
+        <div>
+          {{suggestion.likes}}
+        </div>
+        <mat-icon>
+          favorite_border
+        </mat-icon>
+      </div>
+    </div>
+
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div [@routeAnimations]="prepareRoute(outlet)">
+  <router-outlet #outlet="outlet"></router-outlet>
+</div>
+
+<div class="player-indicators">
+  <canvas class="player-visualizer"></canvas>
+  <div>
+    <button mat-icon-button (click)="startPlay()" *ngIf="paused === true">
+      <mat-icon>
+        play_arrow
+      </mat-icon>
+    </button>
+    <button mat-icon-button (click)="pausePlaying()" *ngIf="playing === true">
+      <mat-icon>
+        pause
+      </mat-icon>
+    </button>
+    <button mat-icon-button (click)="nextSong()" *ngIf="(playing===true || paused===true) && this.hasQueuedSongs()">
+      <mat-icon>
+        skip_next
+      </mat-icon>
+    </button>
+  </div>
+  <small *ngIf="postPlaying" class="player-song-name">{{postPlaying.title}}</small>
+</div>
+
+<mat-menu #mainMenu="matMenu" xPosition="before" style="background-color: #515979">
+  <button (click)="openBugReportDialogue()" mat-menu-item>
+    <mat-icon>bug_report</mat-icon>
+    <span>Report Error</span>
+  </button>
+  <button (click)="openAboutDialogue()" mat-menu-item>
+    <mat-icon>info</mat-icon>
+    <span>About</span>
+  </button>
+</mat-menu>

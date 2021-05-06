@@ -1,0 +1,145 @@
+router-outlet {
+  height: 100%;
+}
+
+.top-menu-holder {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.top-menu-search {
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 100%;
+  transform: rotate(180deg);
+}
+
+input:focus {
+  outline: none;
+}
+
+.top-menu-search input[type='search'] {
+  transform: rotate(180deg);
+  width: 0;
+  border-radius: 2em;
+  padding: 8px;
+  background: #515979;
+  color: white;
+  border: none;
+  transition: width 800ms ease, opacity 750ms linear;
+  opacity: 0;
+}
+
+.top-menu-search .active-search {
+  width: 50vw !important;
+  opacity: 1 !important;
+}
+
+.search-result-box {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  font-size: small;
+  background-color: #1C2031;
+  z-index: 9999;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  overflow: hidden;
+}
+
+.search-result-entry {
+  padding: 5px 15px 5px 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  background-color: inherit;
+  transition: background-color 500ms ease;
+}
+
+.search-result-entry div:first-child {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  flex: 1;
+}
+
+.search-result-entry:hover {
+  background-color: #515979;
+}
+
+.player-indicators {
+  bottom: 0px;
+  position: fixed;
+  left: 0;
+  width: 100%;
+  color: white;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background: rgb(28, 32, 49);
+  background: linear-gradient(0deg, rgba(28, 32, 49, 1) 41%, rgba(28, 31, 49, 0) 100%);
+}
+
+.player-indicators div {
+  min-width: 80px;
+}
+
+.player-song-name {
+  flex-grow: 1;
+  text-align: end;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  z-index: 999;
+  text-transform: capitalize;
+}
+
+.player-visualizer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: inherit;
+  opacity: 0.4;
+}
+
+.wave {
+  background: url("/assets/wave1.svg") repeat-x;
+  position: absolute;
+  bottom: 0px;
+  width: 6400px;
+  height: 40px;
+  animation: wave 30s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+  transform: translate3d(0, 0, 0);
+}
+
+.wave:nth-of-type(2) {
+  bottom: 0px;
+  animation: wave 30s cubic-bezier(0.36, 0.45, 0.63, 0.53) -.125s infinite, swell 7s ease -1.25s infinite;
+  opacity: 1;
+}
+
+@keyframes wave {
+  0% {
+    margin-left: 0;
+  }
+  100% {
+    margin-left: -1600px;
+  }
+}
+
+@keyframes swell {
+  0%, 100% {
+    transform: translate3d(0, -25px, 0);
+  }
+  50% {
+    transform: translate3d(0, 5px, 0);
+  }
+}

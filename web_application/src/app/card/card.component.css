@@ -1,0 +1,61 @@
+.card {
+  color: white;
+  padding: 25px 25px 25px 25px;
+  border-radius: 2em;
+  min-height: calc(100% - 50px - 2vh);
+  max-height: calc(100% - 50px - 2vh);
+  height: calc(100% - 50px - 2vh);
+}
+
+
+.card-cat1 {
+  background: rgb(68, 29, 252);
+  background: url("/assets/wave.svg") repeat-x bottom, linear-gradient(50deg, rgba(68, 29, 252, 1) 0%, rgb(78, 129, 235) 100%);
+}
+
+.card-cat2 {
+  background: rgb(252, 103, 167);
+  background: url("/assets/wave1.svg") repeat-x bottom, linear-gradient(27deg, rgba(252, 103, 167, 1) 0%, rgba(246, 129, 91, 1) 100%);
+}
+
+.card-cat3 {
+  background: rgb(19, 222, 160);
+  background: url("/assets/wave.svg") repeat-x bottom, linear-gradient(50deg, rgba(19, 222, 160, 1) 0%, rgba(6, 183, 130, 1) 100%);
+}
+
+.card-cat4 {
+  background: rgb(255, 213, 65);
+  background: url("/assets/wave1.svg") repeat-x bottom, linear-gradient(50deg, rgba(255, 213, 65, 1) 0%, rgba(240, 179, 26, 1) 100%);
+}
+
+.card-content {
+  min-height: 85%;
+  font-size: 16px;
+}
+
+.card-title {
+  font-size: 18px;
+  text-transform: capitalize;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.card-description {
+  margin-top: 2vh;
+  font-size: 1rem;
+  min-height: 20%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.card-indicators {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}

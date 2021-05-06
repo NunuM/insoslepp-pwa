@@ -1,0 +1,48 @@
+<div class="categories">
+  <div class="category" *ngFor="let category of getCategories()">
+    <button (click)="setActiveCategory(category)" [class.active]="this.getActiveCategory().id===category.id" mat-button>
+      {{category.name}}
+    </button>
+  </div>
+</div>
+
+<div class="featured">
+  <div class="featured-topic content-margin">
+    Recommended
+  </div>
+  <div class="featured-gallery">
+    <app-card
+      *ngFor="let featured of getFeatured() | categoryFilter:getActiveCategory() | queryFilter:getQuery()"
+      id="{{featured.id}}"
+      title="{{featured.title}}"
+      description="{{featured.description}}"
+      color="{{featured.category_id}}"
+      [likes]="featured.likes"
+      [live]="featured.live"
+      [liked]="featured.liked"
+      (clicked)="goTo($event, featured.liked)">
+    </app-card>
+  </div>
+</div>
+
+<div class="recent">
+  <div class="recent-topic">
+    Recent
+  </div>
+  <div class="recent-gallery">
+    <app-card *ngFor="let recent of getRecent() | categoryFilter:getActiveCategory() | queryFilter:getQuery()"
+              id="{{recent.id}}"
+              title="{{recent.title}}"
+              color="{{recent.category_id}}"
+              description="{{recent.category_name}}"
+              [likes]="recent.likes"
+              [live]="recent.live"
+              [liked]="recent.liked"
+              (clicked)="goTo($event, recent.liked)">
+    </app-card>
+  </div>
+</div>
+
+
+<mat-progress-bar *ngIf="isLoading===true" mode="indeterminate"></mat-progress-bar>
+

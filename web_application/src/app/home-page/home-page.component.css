@@ -1,0 +1,124 @@
+.categories {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  height: 100px;
+  color: white;
+  overflow: auto;
+  align-items: center;
+}
+
+
+.categories div button {
+  color: white;
+  background-color: #1C2031;
+  margin-left: 30px;
+  width: fit-content;
+  height: 50px;
+  white-space: nowrap;
+  padding: 0 20px 0 20px;
+  border-radius: 10px;
+  vertical-align: center;
+  font-size: 16px;
+  line-height: 50px;
+  font-weight: lighter;
+  text-transform: capitalize;
+  transition: background-color 300ms ease-in-out;
+}
+
+.active {
+  background-color: #4A80F0 !important;
+}
+
+.featured {
+  display: inline-block;
+}
+
+.featured-topic {
+  font-size: 14px;
+  color: #515979;
+  margin-bottom: 5vw;
+}
+
+.featured-gallery {
+  width: calc(100vw - 5vw);
+  display: flex;
+  overflow: auto;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  min-height: 250px;
+  height: 40vh;
+  margin-left: 5vw;
+  scrollbar-color: #515979 #121421 ;
+}
+
+.featured-gallery::-webkit-scrollbar-track {
+  background-color: #1C2031;
+}
+
+.featured-gallery::-webkit-scrollbar-thumb {
+  background-color: #515979;
+}
+
+.featured-gallery app-card {
+  display: inline-block;
+  width: 40vw;
+  flex-shrink: 0;
+  margin-right: 5vw;
+  min-height: 250px;
+  height: 38vh;
+}
+
+.featured-gallery app-card:last-child {
+  padding-right: 5vw;
+}
+
+
+.recent {
+  display: inline-block;
+  padding: 30px 5vw 48px 5vw;
+}
+
+.recent-topic {
+  font-size: 14px;
+  color: #515979;
+  margin-bottom: 5vw;
+}
+
+.recent-gallery {
+  width: calc(100vw - 10vw - 10px);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 10px;
+}
+
+.recent-gallery app-card {
+  display: inline-block;
+  min-height: 200px;
+  height: 100%;
+}
+
+@media screen and (max-width: 992px) {
+
+  .featured-gallery app-card {
+    width: 80vw;
+  }
+
+  .categories {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .categories::-webkit-scrollbar {
+    display: none;
+  }
+
+  .featured-gallery {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .featured-gallery::-webkit-scrollbar {
+    display: none;
+  }
+}
