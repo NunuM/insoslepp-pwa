@@ -36,7 +36,7 @@ npm start # default port 3000 http://localhost:3000/admin/posts/
 ```
 ### WebApp
 
-On [environment]() fill the vapi with the public key.
+On [environment](https://github.com/NunuM/insoslepp-pwa/blob/main/web_application/src/environments/environment.ts) fill the vapi with the public key and change the host ip.
 
 
 ### REST API
