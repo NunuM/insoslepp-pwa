@@ -1,0 +1,33 @@
+extends layout
+
+block content
+    .container
+        .row
+            each post in [...wall.recent, ...wall.featured]
+                article.col-sm-12.col-md-6.pt-5(itemscope itemtype="http://schema.org/BlogPosting")
+                    h1(itemprop="name")
+                        a(href='/admin/posts/' + post.id itemprop="url")=post.title
+                    h2=post.category_name
+                    time(datetime=post.created.toISOString().split('T').shift() itemprop="datePublished")=post.created.toDateString()
+                    meta(itemprop="description" content=post.description)
+    .container.mt-5
+        .row
+            .col-12
+                nav(aria-label='Articles Pagination')
+                    ul.pagination.pagination-lg
+                        if page > 0
+                            li.page-item
+                                a.page-link(href='?page=' + (page - 1) aria-label='Previous')
+                                    span(aria-hidden='true') &laquo;
+                        else
+                            li.page-item.disabled
+                                a.page-link(href='?page=' + (page - 1) aria-label='Previous')
+                                    span(aria-hidden='true') &laquo;
+                        if wall.recent.length === PAGE_SIZE
+                            li.page-item
+                                a.page-link(href='?page=' + (page + 1) aria-label='Next')
+                                    span(aria-hidden='true') &raquo;
+                        else
+                            li.page-item.disabled
+                                a.page-link(href='?page=' + (page + 1) aria-label='Next')
+                                    span(aria-hidden='true') &raquo;

@@ -1,0 +1,109 @@
+extends layout
+
+block content
+    .container.mb-5
+        .row
+            article.col-12(itemscope itemtype="http://schema.org/BlogPosting")
+                form(method='POST' action='/admin/posts/' + id + '/edit')
+                    h4.mt-5
+                    | Title
+                    input.form-control(type='text' name='title' value=title required=)
+                    h4.mt-5
+                    | Category:
+                    select.form-select(name='category' required=)
+                        each cat in categories
+                            if category_name === cat.name
+                                option(value=cat.id, selected)=cat.name
+                            else
+                                option(value=cat.id)=cat.name
+                    h4.mt-5
+                    | Description
+                    textarea.form-control(rows='5' name='description' required=)=description
+
+                    h4.mt-5
+                    | Body
+                    textarea.form-control(rows='5' name='body')=body
+
+                    h4.mt-5
+                    | Images
+                    .container.mt-3
+                        .row
+                            .col-12
+                                div(style='display:flex;justify-content: space-between;align-items: end;')
+                                    each img in images || []
+                                        div(style='flex:1;')
+                                            input.form-control(type='url', name='imageUrl' value=img.url, placeholder='Image url' required)
+                                        div
+                                            input.form-control(type='text', name='imageDescription' value=img.alt, placeholder='Description' required)
+                                        div
+                                            button.btn.btn-danger(type='button' onclick="deleteImage(this)") X
+                            .col-12
+                                button.btn.btn-dark(type='button', style='width:100%;' onclick='addImage(this);') Add Image
+                    h4.mt-5
+                    | Tips
+                    .container.mt-3
+                        .row
+                            .col-12
+                                div(style='display:flex;justify-content: space-between;align-items: end;')
+                                    each tip in tips || []
+                                        div(style='flex:1;')
+                                            textarea.form-control(rows='1' name='tips' style='width: 100%;' required)=tip
+                                        div
+                                            button.btn.btn-danger(type='button', onclick='deleteTip(this)') X
+                            .col-12
+                                button.btn.btn-dark.mt-5(type='button', style='width:100%;' onclick='addTip(this);') Add Tip
+
+                    hr
+                    button.btn.btn-outline-dark(type='submit' style='width:100%') Update
+    script.
+
+        function addImage(element) {
+            const divImgUrl = document.createElement('div');
+            divImgUrl.setAttribute('style', 'flex:1;');
+            divImgUrl.innerHTML = '<input class="form-control" name="imageUrl" type="url" placeholder="Image URL" required>'
+
+            const divImgDesc = document.createElement('div');
+            divImgDesc.innerHTML = '<input class="form-control" name="imageDescription" type="text" placeholder="Image description" required>'
+
+            const divImgDel = document.createElement('div');
+            divImgDel.innerHTML = '<button class="btn btn-danger" type="button" onclick="deleteImage(this)">X</button>';
+
+
+            const holder = document.createElement('div');
+            holder.classList.add('col-12');
+            holder.setAttribute('style', 'display:flex;justify-content: space-between;align-items: end;');
+
+            holder.appendChild(divImgUrl);
+            holder.appendChild(divImgDesc);
+            holder.appendChild(divImgDel);
+
+            const refEl = element.parentElement;
+            refEl.parentElement.insertBefore(holder, refEl);
+        }
+
+        function deleteImage(element) {
+            element.parentElement.parentElement.remove();
+        }
+
+        function addTip(element) {
+            const divTip = document.createElement('div');
+            divTip.setAttribute('style', 'flex:1;');
+            divTip.innerHTML = '<textarea rows="1" name="tips" style="width: 100%;" required></textarea>'
+
+            const divImgDel = document.createElement('div');
+            divImgDel.innerHTML = '<button class="btn btn-danger" type="button" onclick="deleteTip(this)">X</button>';
+
+            const holder = document.createElement('div');
+            holder.classList.add('col-12');
+            holder.setAttribute('style', 'display:flex;justify-content: space-between;align-items: end;');
+
+            holder.appendChild(divTip);
+            holder.appendChild(divImgDel);
+
+            const refEl = element.parentElement;
+            refEl.parentElement.insertBefore(holder, refEl);
+        }
+
+        function deleteTip(element) {
+            element.parentElement.parentElement.remove();
+        }

@@ -1,0 +1,23 @@
+extends layout
+
+block content
+    .container.mb-5
+        .row
+            article.col-12(itemscope itemtype="http://schema.org/BlogPosting")
+                div(style='display:flex; justify-content: space-between; align-items: baseline;')
+                    h1(itemprop="name")=title
+                    p(style='text-align:right;')
+                        a(href='/admin/posts/' + id + '/edit') Edit Post
+                h2=category_name
+                time(datetime=created.toISOString().split('T').shift() itemprop="datePublished")=created.toDateString()
+                meta(itemprop="description" content=description)
+                div.mt-2(itemprop="articleBody", style='white-space: pre-line;')
+                    |  #{description}
+                    div.mt-2.mb-5
+                        |  #{body}
+                    h5.mt-2 Images
+                    each img in images || []
+                        img(src=img.src alt=img.alt)
+                    h5.mt-2 Tips
+                    each tip in tips || []
+                        p.mb-5=tip

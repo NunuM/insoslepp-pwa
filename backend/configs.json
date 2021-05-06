@@ -1,0 +1,53 @@
+{
+  "inDev": true,
+  "appName": "MyApp",
+  "description": "",
+  "domain": "http://localhost:3000",
+  "sitemap": "./sitemap.xml",
+  "angularAppServingFolder": "public/dist/sleep",
+  "jwtSecrete": "test",
+  "resultsPageSize": 20,
+  "admin": {
+    "apikey": "test",
+    "ui": {
+      "username": "admin",
+      "password": "test"
+    }
+  },
+  "database": {
+    "host": "localhost",
+    "user": "user",
+    "password": "pass",
+    "database": "sleep_web_app",
+    "port": 33069,
+    "connectionLimit": 20,
+    "queueLimit": 10
+  },
+  "emailFrom": "",
+  "email": {
+    "fromEmail": "no-reply@myapp.com",
+    "fromName": "MyApp",
+    "server": {
+      "host": "smtp.myapp.com",
+      "port": 465,
+      "secure": false,
+      "auth": {
+        "user": "my@app.com",
+        "pass": "pass"
+      }
+    }
+  },
+  "push": {
+    "email": "my@app.com",
+    "publicKey": "",
+    "privateKey": ""
+  },
+  "plugins": {
+    "local_audio": {
+      "args": [
+        "./audio"
+      ]
+    }
+  },
+  "accessLog": ":remote-addr - :remote-user [:date[clf]] \":method :url HTTP/:http-version\" :status :res[content-length] \":referrer\" \":user-agent\" :req[correlation-id]"
+}
